@@ -1,0 +1,51 @@
+type City {
+    id: ID!
+    advisory: Advisory
+    lat: Float!
+    lng: Float!
+    name: String! @search(by: [exact])
+    places: [Place]
+    weather: Weather
+}
+
+type Advisory {
+    id: ID!
+    continent: String!
+    country: String!
+    last_updated: String
+    message: String
+    score: Float!
+    source: String
+}
+
+type Place {
+    id: ID!
+    address: String
+    avg_user_rating: Float
+    city_name: String!
+    gmaps_url: String
+    lat: Float!
+    lng: Float!
+    location_type: [String]
+    name: String! @search(by: [exact])
+    no_user_rating: Int
+    place_id: String!
+    photo_id: String
+}
+
+type Weather {
+    id: ID!
+    city_name: String!
+    description: String
+    feels_like: Float
+    humidity: Int
+    pressure: Int
+    sunrise: Int
+    sunset: Int
+    temp: Float
+    temp_min: Float
+    temp_max: Float
+    visibility: String
+    wind_direction: Int
+    wind_speed: Float
+}
