@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"io"
 	"log"
 	"math/rand"
 	"net/http"
@@ -79,6 +80,9 @@ func main() {
 // double requets being made. This happens because the browser
 // sends a request in the background for a website favicon.
 func Echo(w http.ResponseWriter, r *http.Request) {
+
+	// print writer
+	io.WriteString(w, "Hello from a HandleFunc #1!\n")
 
 	// Print a random number at the beginning and end of each request.
 	n := rand.Intn(1000)
