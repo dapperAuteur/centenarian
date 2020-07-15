@@ -9,8 +9,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/ardanlabs/garagesale/cmd/sales-api/internal/handlers"
-	"github.com/ardanlabs/garagesale/internal/platform/database"
+	"github.com/dapperAuteur/garagesale/cmd/sales-api/internal/handlers"
+	"github.com/dapperAuteur/garagesale/internal/platform/database"
 )
 
 func main() {
