@@ -30,7 +30,7 @@ func main() {
 	}
 	defer db.Close()
 
-	productsHandler := handlers.Products{DB: db}
+	productsHandler := handlers.Product{DB: db}
 
 	// =========================================================================
 	// Start API Service

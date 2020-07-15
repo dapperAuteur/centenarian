@@ -11,13 +11,13 @@ import (
 
 // Products defines all of the handlers related to products. It holds the
 // application state needed by the handler methods.
-type Products struct {
+type Product struct {
 	DB *sqlx.DB
 }
 
 // List gets all products from the service layer and encodes them for the
 // client response.
-func (p *Products) List(w http.ResponseWriter, r *http.Request) {
+func (p *Product) List(w http.ResponseWriter, r *http.Request) {
 	list, err := product.List(p.DB)
 	if err != nil {
 		log.Printf("error: listing products: %s", err)
