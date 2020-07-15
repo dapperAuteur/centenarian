@@ -1,48 +1,30 @@
-# 4. Database
+# 5. Packaging
 
-- Start a PostgreSQL server running in a docker container
-- Setup schema
-- Seed database
-- Connect to database from service
-- Remove hardcoded product list and replace with SQL query
-
-## Notes:
-
-- Executing schema changes requires elevated privileges. The normal API service
-  should be running as a DB user with less access.
-- Using `SELECT *` has problems.
-
-```
-## Start postgres:
-docker-compose up -d
-
-## Create the schema and insert some seed data.
-go build
-./garagesale migrate
-./garagesale seed
-
-## Run the app then make requests.
-./garagesale
-```
+- Put business logic for Products in `internal/products`
+- Put db administration in `cmd/sales-admin`
+- Put entrypoint in `cmd/sales-api`
+- Put HTTP layer in `cmd/sales-api/internal/handlers`
 
 ## Links:
 
-- [Surprises, Antipatterns and Limitations (of `database/sql`)](http://go-database-sql.org/surprises.html)
-
+https://www.ardanlabs.com/blog/2017/02/package-oriented-design.html
 
 ## File Changes:
 
 ```
-Added    docker-compose.yaml
-Modified main.go
-Added    schema/migrate.go
-Added    schema/seed.go
+Added    cmd/sales-admin/main.go
+Added    cmd/sales-api/internal/handlers/product.go
+Added    cmd/sales-api/main.go
+Added    internal/platform/database/database.go
+Added    internal/product/models.go
+Added    internal/product/product.go
+Moved    schema/migrate.go -> internal/schema/migrate.go
+Moved    schema/seed.go -> internal/schema/seed.go
+Deleted  main.go
 ```
 
 ## Dependency Changes:
 
 ```
-+ 	github.com/GuiaBolso/darwin v0.0.0-20170210191649-86919dfcf808
-+ 	github.com/jmoiron/sqlx v1.2.0
-+ 	github.com/lib/pq v1.1.1
++ 	github.com/pkg/errors v0.8.1
 ```
