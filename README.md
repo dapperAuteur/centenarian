@@ -1,30 +1,35 @@
-# 5. Packaging
+# 6. Configuration
 
-- Put business logic for Products in `internal/products`
-- Put db administration in `cmd/sales-admin`
-- Put entrypoint in `cmd/sales-api`
-- Put HTTP layer in `cmd/sales-api/internal/handlers`
+- Create `config` struct in `cmd/sales-api` and `cmd/sales-admin`.
+- Remove hardcoded HTTP & DB info.
+- Copy the `internal/platform/conf` package into your project.
+- Use `conf.Parse` to populate your config structs.
+- Detect the `ErrHelpWanted` error and display `conf.Usage` in that case.
+- Unlike the `sales-api` program, the `sales-admin` config should include a
+  field of type `conf.Args` to capture command line arguments after flags are
+  processed.
 
-## Links:
+## Discussion
 
-https://www.ardanlabs.com/blog/2017/02/package-oriented-design.html
+Configuration can come from many places. Some programs use environment
+variables, command-line flags, config files, or configuration services.
 
 ## File Changes:
 
 ```
-Added    cmd/sales-admin/main.go
-Added    cmd/sales-api/internal/handlers/product.go
-Added    cmd/sales-api/main.go
-Added    internal/platform/database/database.go
-Added    internal/product/models.go
-Added    internal/product/product.go
-Moved    schema/migrate.go -> internal/schema/migrate.go
-Moved    schema/seed.go -> internal/schema/seed.go
-Deleted  main.go
+Modified cmd/sales-admin/main.go
+Modified cmd/sales-api/main.go
+Added    internal/platform/conf/LICENSE
+Added    internal/platform/conf/conf.go
+Added    internal/platform/conf/conf_test.go
+Added    internal/platform/conf/fields.go
+Added    internal/platform/conf/sources.go
+Added    internal/platform/conf/usage.go
+Modified internal/platform/database/database.go
 ```
 
 ## Dependency Changes:
 
 ```
-+ 	github.com/pkg/errors v0.8.1
++ 	github.com/google/go-cmp v0.3.0
 ```
