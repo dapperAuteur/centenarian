@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/dapperAuteur/garagesale/internal/product"
+	"github.com/dapperAuteur/centenarian/internal/product"
 	"github.com/jmoiron/sqlx"
 )
 

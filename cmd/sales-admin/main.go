@@ -8,8 +8,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/dapperAuteur/garagesale/internal/platform/database"
-	"github.com/dapperAuteur/garagesale/internal/schema"
+	"github.com/dapperAuteur/centenarian/internal/platform/database"
+	"github.com/dapperAuteur/centenarian/internal/schema"
 )
 
 func main() {
